@@ -1,0 +1,68 @@
+{
+  "name": "cardeeno",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "test": "jest --watch",
+    "test:ci": "jest --ci --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:visual": "percy exec -- playwright test",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "ai:generate": "node scripts/ai-generate.js",
+    "ai:test": "node scripts/ai-test-generator.js",
+    "ai:fix-tests": "node scripts/ai-fix-tests.js",
+    "ai:docs": "node scripts/ai-docs-generator.js",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "next": "^15.0.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "framer-motion": "^11.15.0",
+    "zustand": "^5.0.2",
+    "axios": "^1.7.9",
+    "date-fns": "^4.1.0",
+    "zod": "^3.24.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
+    "typescript": "^5.7.2",
+    "eslint": "^9.16.0",
+    "eslint-config-next": "^15.0.3",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/user-event": "^14.5.2",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "@playwright/test": "^1.49.1",
+    "@percy/cli": "^1.31.1",
+    "@percy/playwright": "^1.0.8",
+    "prettier": "^3.4.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11",
+    "@anthropic-ai/sdk": "^0.32.2"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  }
+}
