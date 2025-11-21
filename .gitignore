@@ -46,3 +46,8 @@ next-env.d.ts
 # AI and development
 .claude
 scripts/cache
+
+# Screenshots and reports
+screenshots/
+*.png
+!public/**/*.png
