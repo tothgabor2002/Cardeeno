@@ -84,6 +84,16 @@ Cardeeno is a modern vocabulary learning application that combines gamification 
 5. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
+## Documentation
+
+Comprehensive guides are available in the `docs/` folder:
+
+- **[Setup Guide](docs/SETUP_GUIDE.md)** - Step-by-step installation and configuration
+- **[Architecture](docs/ARCHITECTURE.md)** - System design and technical decisions
+- **[Deployment](docs/DEPLOYMENT.md)** - Multi-cloud deployment guides
+- **[Contributing](docs/CONTRIBUTING.md)** - Contribution guidelines
+- **[Project Summary](docs/PROJECT_SUMMARY.md)** - Complete feature overview
+
 ## Development Workflow
 
 ### AI-Powered Development
@@ -162,7 +172,7 @@ The project includes configurations for:
 - **DigitalOcean App Platform**
 - **Azure Container Apps**
 
-See [.github/workflows/ci.yml](.github/workflows/ci.yml) for the automated deployment pipeline.
+See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed guides and [.github/workflows/ci.yml](.github/workflows/ci.yml) for the automated deployment pipeline.
 
 ## Project Structure
 
@@ -175,6 +185,12 @@ cardeeno/
 │   └── page.tsx             # Home page
 ├── components/              # Reusable React components
 ├── lib/                     # Utility functions and helpers
+├── docs/                    # Documentation
+│   ├── SETUP_GUIDE.md      # Setup instructions
+│   ├── ARCHITECTURE.md     # System architecture
+│   ├── DEPLOYMENT.md       # Deployment guides
+│   ├── CONTRIBUTING.md     # Contribution guidelines
+│   └── PROJECT_SUMMARY.md  # Feature overview
 ├── tests/                   # Test files
 │   ├── unit/               # Unit tests
 │   ├── integration/        # Integration tests
@@ -223,16 +239,6 @@ The project uses Model Context Protocol (MCP) servers for enhanced AI capabiliti
 - **postgres**: Database operations (when configured)
 
 Configure in `.claude/mcp.json`.
-
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## CI/CD Pipeline
 
