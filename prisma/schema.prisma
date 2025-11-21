@@ -1,0 +1,88 @@
+// Cardeeno - Quizlet-Style Flashcard Platform
+// Prisma Schema for PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  avatarUrl     String?   @map("avatar_url")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  sets          Set[]
+  studySessions StudySession[]
+
+  @@map("users")
+}
+
+// Study Set model
+model Set {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  isPublic    Boolean  @default(false) @map("is_public")
+  userId      String   @map("user_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cards         Card[]
+  studySessions StudySession[]
+
+  @@map("sets")
+  @@index([userId])
+  @@index([isPublic])
+  @@index([createdAt])
+}
+
+// Flashcard model
+model Card {
+  id         String   @id @default(cuid())
+  setId      String   @map("set_id")
+  term       String
+  definition String
+  orderIndex Int      @map("order_index")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  set Set @relation(fields: [setId], references: [id], onDelete: Cascade)
+
+  @@map("cards")
+  @@index([setId])
+  @@unique([setId, orderIndex])
+}
+
+// Study Session model (tracks user progress)
+model StudySession {
+  id             String    @id @default(cuid())
+  userId         String    @map("user_id")
+  setId          String    @map("set_id")
+  mode           String    // "flashcard" | "learn"
+  score          Int       @default(0)
+  totalCards     Int       @map("total_cards")
+  completedCards Int       @default(0) @map("completed_cards")
+  startedAt      DateTime  @default(now()) @map("started_at")
+  completedAt    DateTime? @map("completed_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  set  Set  @relation(fields: [setId], references: [id], onDelete: Cascade)
+
+  @@map("study_sessions")
+  @@index([userId])
+  @@index([setId])
+  @@index([startedAt])
+}

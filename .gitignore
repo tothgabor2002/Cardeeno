@@ -45,6 +45,7 @@ next-env.d.ts
 
 # AI and development
 .claude
+.gemini
 scripts/cache
 
 # Screenshots and reports

@@ -1,10 +1,10 @@
-# Cardeeno - AI-Powered Vocabulary Learning Platform
+# Cardeeno - Quizlet-Style Flashcard Learning Platform
 
 <div align="center">
 
 ![Cardeeno Logo](public/logo.png)
 
-**Master vocabulary through engaging card matching games with scientifically proven spaced repetition**
+**Create, share, and study flashcard sets with interactive study modes and engaging animations**
 
 [![CI/CD](https://github.com/tothgabor2002/Cardeeno/actions/workflows/ci.yml/badge.svg)](https://github.com/tothgabor2002/Cardeeno/actions)
 [![codecov](https://codecov.io/gh/tothgabor2002/Cardeeno/branch/master/graph/badge.svg)](https://codecov.io/gh/tothgabor2002/Cardeeno)
@@ -14,35 +14,52 @@
 
 ## Overview
 
-Cardeeno is a modern vocabulary learning application that combines gamification with spaced repetition techniques. Built with Next.js 15, TypeScript, and AI-powered development workflows, it provides an engaging and effective way to learn new languages.
+Cardeeno is a modern, full-stack flashcard and study tool inspired by Quizlet. Built with Next.js 15, TypeScript, PostgreSQL, and Prisma ORM, it enables users to create, share, and study sets of flashcards using interactive study modes with smooth 3D animations.
 
 ### Key Features
 
-- **Interactive Card Matching Game**: Match word pairs between known and target languages
-- **Spaced Repetition System**: Three-level memory tracking (short, medium, long-term)
-- **Progress Visualization**: Color-coded progress bars showing learning status
-- **Custom Word Sets**: Create personal word sets or use community-created collections
+- **User Authentication**: Secure login with Clerk/NextAuth.js (email/password + social login)
+- **Study Set Management**: Full CRUD operations - create, edit, delete study sets with dynamic card inputs
+- **Flashcard Mode**: Interactive 3D card flipping with smooth animations and keyboard navigation
+- **Learn Mode (Quiz)**: Multiple-choice quiz with instant feedback and score tracking
+- **User Dashboard**: View your study sets, recent activity, and search for sets
+- **Search & Discovery**: Find sets by title, filter by public/private, sort by popularity
+- **Responsive Design**: Fully responsive interface (mobile, tablet, desktop)
+- **PostgreSQL + Prisma**: Type-safe database access with relational data
 - **AI-Powered Development**: Automated code generation, testing, and documentation
-- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
 
 ## Technology Stack
 
 ### Frontend
-- **Next.js 15** - React framework with App Router
-- **TypeScript** - Type-safe code
-- **Tailwind CSS** - Utility-first styling
-- **Framer Motion** - Smooth animations
 
-### State Management
+- **Next.js 15** - React framework with App Router
+- **TypeScript** - Type-safe code (strict mode)
+- **Tailwind CSS** - Utility-first styling
+- **Framer Motion** - Smooth 3D animations
 - **Zustand** - Lightweight state management
 
+### Backend & Database
+
+- **Next.js API Routes** - Serverless API endpoints
+- **Prisma ORM** - Type-safe database client
+- **PostgreSQL** - Relational database (via Supabase)
+
+### Authentication
+
+- **Clerk** or **NextAuth.js** - User authentication
+  - Email/Password authentication
+  - Social login (Google, GitHub, etc.)
+  - Protected routes with middleware
+
 ### Testing
+
 - **Jest** - Unit testing
 - **React Testing Library** - Component testing
-- **Playwright** - E2E testing
+- **Playwright** - E2E testing (Chromium, Firefox, WebKit)
 - **Percy** - Visual regression testing
 
 ### DevOps & AI
+
 - **Docker** - Containerization
 - **GitHub Actions** - CI/CD pipeline
 - **Claude AI** - Automated code generation, testing, and documentation
@@ -54,34 +71,66 @@ Cardeeno is a modern vocabulary learning application that combines gamification 
 
 - Node.js 20 or higher
 - npm or yarn
+- PostgreSQL database (Supabase account recommended)
 - Docker (for containerized deployment)
 - Anthropic API key (for AI features)
+- Clerk or NextAuth.js account (for authentication)
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/tothgabor2002/Cardeeno.git
    cd Cardeeno
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set up environment variables**
+
    ```bash
    cp .env.example .env.local
    ```
-   Edit `.env.local` and add your API keys.
 
-4. **Run the development server**
+   Edit `.env.local` and add your configuration:
+
+   ```env
+   # Database (Supabase PostgreSQL URL)
+   DATABASE_URL="postgresql://user:password@host:5432/database"
+
+   # Authentication (Clerk or NextAuth)
+   NEXTAUTH_SECRET="your-secret-here"
+   NEXTAUTH_URL="http://localhost:3000"
+
+   # Anthropic API (for AI features)
+   ANTHROPIC_API_KEY="your-anthropic-key"
+   ```
+
+4. **Set up the database**
+
+   ```bash
+   # Generate Prisma client
+   npx prisma generate
+
+   # Run database migrations
+   npx prisma migrate dev
+
+   # (Optional) Seed the database with sample data
+   npx prisma db seed
+   ```
+
+5. **Run the development server**
+
    ```bash
    npm run dev
    ```
 
-5. **Open your browser**
+6. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## Documentation
@@ -101,21 +150,25 @@ Comprehensive guides are available in the `docs/` folder:
 This project includes AI-powered scripts that automate common development tasks:
 
 #### Generate Components
+
 ```bash
 npm run ai:generate -- --type component --name WordCard --description "A card component for displaying word pairs"
 ```
 
 #### Generate Tests
+
 ```bash
 npm run ai:test -- --file components/WordCard.tsx
 ```
 
 #### Auto-Fix Failing Tests
+
 ```bash
 npm run ai:fix-tests
 ```
 
 #### Generate Documentation
+
 ```bash
 npm run ai:docs
 ```
@@ -134,6 +187,7 @@ This project is optimized for use with [Claude Code](https://claude.com/claude-c
 ### Testing
 
 Run all tests:
+
 ```bash
 npm run test:ci          # Unit tests with coverage
 npm run test:e2e         # E2E tests
@@ -154,12 +208,14 @@ npm run type-check       # TypeScript type checking
 ### Docker
 
 Build and run with Docker:
+
 ```bash
 docker build -t cardeeno:latest .
 docker run -p 3000:3000 cardeeno:latest
 ```
 
 Or use Docker Compose:
+
 ```bash
 docker-compose up
 ```
@@ -167,6 +223,7 @@ docker-compose up
 ### Cloud Deployment
 
 The project includes configurations for:
+
 - **AWS ECS/Fargate**
 - **Google Cloud Run**
 - **DigitalOcean App Platform**
@@ -224,6 +281,7 @@ Cardeeno implements a three-tier spaced repetition system:
 ### Card Matching Game
 
 The game presents two columns of cards:
+
 - Left column: Known language (e.g., English)
 - Right column: Target language (e.g., German)
 
