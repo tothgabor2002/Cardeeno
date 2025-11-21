@@ -6,8 +6,8 @@
 
 **Master vocabulary through engaging card matching games with scientifically proven spaced repetition**
 
-[![CI/CD](https://github.com/yourusername/cardeeno/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/cardeeno/actions)
-[![codecov](https://codecov.io/gh/yourusername/cardeeno/branch/main/graph/badge.svg)](https://codecov.io/gh/yourusername/cardeeno)
+[![CI/CD](https://github.com/tothgabor2002/Cardeeno/actions/workflows/ci.yml/badge.svg)](https://github.com/tothgabor2002/Cardeeno/actions)
+[![codecov](https://codecov.io/gh/tothgabor2002/Cardeeno/branch/master/graph/badge.svg)](https://codecov.io/gh/tothgabor2002/Cardeeno)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 </div>
@@ -61,8 +61,8 @@ Cardeeno is a modern vocabulary learning application that combines gamification 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/cardeeno.git
-   cd cardeeno
+   git clone https://github.com/tothgabor2002/Cardeeno.git
+   cd Cardeeno
    ```
 
 2. **Install dependencies**
